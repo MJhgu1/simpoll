@@ -65,10 +65,62 @@ ul.topnav #info {display: none;}
 /* contents */
 #list_left{
   height: 1000px;
+  border-right: 1px solid grey;
 }
 #list_right{
   height: 1000px;
 }
+input[type=text] {
+        width: 100%;
+        height: 50px;
+        margin: 5px;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        border :1px solid #ccc;
+}
+button.filter {
+        width: 80px;
+        height: 50px;
+        margin: 5px;
+        font-size: 15px;
+        color : white;
+        background-color: grey;
+        border-radius: 5px;
+        border :1px solid #ccc;
+}
+#nav-bar{
+  padding:0px;
+  color: #595959;
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+}
+.room {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border :1px solid #ccc;
+  margin: 10px;
+  height: 150px;
+}
+.title {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 800;
+  display: inline;
+}
+.tags {
+  float:right;
+}
+.label{
+  border-radius: 5px;
+  border :1px solid #ccc;
+  margin-right: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  float:left;
+}
+.color-code{ background-color: aquamarine; }
+.color-proc{ background-color: rgb(243, 156, 18) }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -92,23 +144,66 @@ ul.topnav #info {display: none;}
   <br><br><br>
 
   <h3>필터</h3>
-  <button>중요</button>
-  <button>참여필요</button>
-  <button>알림</button>
-  <br>
-  <button>진행중</button>
-  <button>종료</button>
+  <button class="filter">중요</button>
+  <button class="filter">참여필요</button>
+  <button class="filter">알림</button>
+  <button class="filter">진행중</button>
+  <button class="filter">종료</button>
 
   <br><br><br>
 
   <h3>정렬</h3>
-  <button>시간순</button>
-  <button>이름순</button>
-  <button>좋아요순</button>
+  <button class="filter">시간순</button>
+  <button class="filter">이름순</button>
+  <button class="filter">좋아요순</button>
+</div>
+
+<div class="col-0 col-m-0 col-s-12" id="nav-bar">
+  <div class="col-s-3"></div>
+  <div class="col-s-6 align-center">검색</div>
+  <div class="col-s-3 align-right"><a href="#">V</a></div>
 </div>
 
 <div class="col-8 col-m-9 col-s-12" id="list_right">
+  <div class="col-1"></div>
+  <div class="col-10">
 
+    <div class="col-12 room">
+      <div class="title">2020-1 운영체제</div>
+      <div class="tags">
+        <div class="label color-code">#ABCD</div>
+        <div class="label color-proc">#진행중</div>
+      </div>
+      <div class="col-5" style="clear: both;">
+        <div class="title">
+          방장: Prof.Bob
+          <br>
+          참여인원: 50명
+        </div>
+      </div>
+      
+      <div class="col-4">
+          <div class="title">
+          기간
+          <br>
+          2020.02.03 ~ 2020.02.04
+          </div>
+      </div>
+      
+      <div class="col-3 align-right align-bottom" style="height: 100%; padding: 0px;">
+          <button>삭제</button>
+          <button>이동</button>
+      </div>
+    </div>
+
+    <div class="col-12 room"></div>
+
+    <div class="col-12 room"></div>
+
+    <div class="col-12 room"></div>
+    
+  </div>
+  <div class="col-1"></div>
 </div>
 
 </body>
