@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simpoll</title>
+    <style>
+/* navigation */
+  body {
+    margin: 0;
+  }
+  ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  ul.topnav li {
+    float: right;
+  }
+  ul.topnav li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  ul.topnav li.title {
+    float: left;
+    font-size: 20px;
+  }
+  a:link{
+    text-decoration: none;
+    color: #595959;
+  }
+  a:visited{
+    text-decoration: none;
+    color: #595959;
+  }
+@media screen and (max-width: 600px) {
+  ul.topnav li.title,
+  ul.topnav li {float: none;}
+}
+
+/* contents */
+input[type=radio]{
+    display: inline;
+}
+
+input[type=submit] {
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    color : white;
+    background-color: lightskyblue;
+    border-radius: 5px;
+    border :1px solid #ccc;
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+}
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- navigation -->
+<ul class="topnav">
+    <li class="title"><a href="#">Simpoll</a></li>
+    <li><a href="#">회원가입</a></li>
+    <li><a href="#">로그인</a></li>
+    <li><a href="#">내 방 목록</a></li>
+    <li><a href="#">새로운 방 만들기</a></li>
+</ul>
+
+<!-- contents -->
+<div class="col-12 col-m-12 col-s-12">
+    <form action="make_room.php" method="post">
+        <h1>새로운 방 개설</h1>
+        
+        <!-- create authority -->
+        <h3>투표 생성 권한</h3>
+            <label for="c_auth_0"><input type="radio" id="c_auth_0" name="c_auth" value="0" checked> 방장만</label>
+            <label for="c_auth_1"><input type="radio" id="c_auth_1" name="c_auth" value="1"> 방 참여자</label>
+            <label for="c_auth_2"><input type="radio" id="c_auth_2" name="c_auth" value="2"> 아무나</label>
+        
+        <!-- join authority -->
+        <h3>투표 참여 권한</h3>
+            <label for="j_auth_1"><input type="radio" id="j_auth_1" name="j_auth" value="1" checked> 방 참여자</label>
+            <label for="j_auth_2"><input type="radio" id="j_auth_2" name="j_auth" value="2"> 아무나</label>
+        
+        <!-- date duration -->
+        <!-- if #date_4 clicked than input:date will be appear -->
+        <h3>기간</h3>
+            <label for="date_0"><input type="radio" id="date_0" name="date" value="0" checked> 하루</label>
+            <label for="date_1"><input type="radio" id="date_1" name="date" value="1"> 일주일</label>
+            <label for="date_2"><input type="radio" id="date_2" name="date" value="2"> 한달</label>
+            <label for="date_3"><input type="radio" id="date_3" name="date" value="3"> 무기한</label>
+            <label for="date_4"><input type="radio" id="date_4" name="date" value="4"> 기타</label>
+        
+        <br><br><br>
+
+        <input class="col-4 col-m-6 col-s-12" type="submit" value="방 생성">
+    </form>
+</div>
+</body>
+</html>
