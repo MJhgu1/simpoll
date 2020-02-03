@@ -7,41 +7,47 @@
     <title>Simpoll</title>
     <style>
 /* navigation */
-  body {
-    margin: 0;
-  }
-  ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  ul.topnav li {
-    float: right;
-  }
-  ul.topnav li a {
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  ul.topnav li.title {
-    float: left;
-    font-size: 20px;
-  }
-  a:link{
-    text-decoration: none;
-    color: #595959;
-  }
-  a:visited{
-    text-decoration: none;
-    color: #595959;
-  }
-@media screen and (max-width: 600px) {
-  ul.topnav li.title,
-  ul.topnav li {float: none;}
+body {
+  margin: 0;
 }
-
+div.header {
+  border-bottom: 1px solid #ccc
+}
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  float: right;
+}
+ul.topnav li {
+  float: left;
+}
+ul.topnav li a {
+  display: block;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+}
+span.title{
+  display: inline-block;
+  font-size: 20px;
+  padding: 16px 16px;
+}
+a:link{
+  text-decoration: none;
+  color: #595959;
+}
+a:visited{
+  text-decoration: none;
+  color: #595959;
+}
+@media screen and (max-width: 600px) {
+span.title {text-align: center; display:block;}
+ul.topnav li.right {float: none;}
+ul.topnav li {float: none;}
+ul.topnav{float: none;}
+}
 /* contents */
 input[type=radio]{
     display: inline;
@@ -66,30 +72,32 @@ input[type=submit]:hover{
 </head>
 <body>
 <!-- navigation -->
-<ul class="topnav">
-    <li class="title"><a href="#">Simpoll</a></li>
-    <li><a href="#">회원가입</a></li>
-    <li><a href="#">로그인</a></li>
-    <li><a href="#">내 방 목록</a></li>
-    <li><a href="#">새로운 방 만들기</a></li>
-</ul>
+<div class="header">
+  <span class="title"><a href="#">Simpoll</a></span>
+  <ul class="topnav">
+    <li class="right"><a href="#">새로운 방 만들기</a></li>
+    <li class="right"><a href="#">내 방 목록</a></li>
+    <li class="right"><a href="#">로그인</a></li>
+    <li class="right"><a href="#">회원가입</a></li>
+  </ul>
+</div>
 
 <!-- contents -->
 <div class="col-12 col-m-12 col-s-12">
     <form action="make_room.php" method="post">
         <h1>새로운 방 개설</h1>
-        
+
         <!-- create authority -->
         <h3>투표 생성 권한</h3>
             <label for="c_auth_0"><input type="radio" id="c_auth_0" name="c_auth" value="0" checked> 방장만</label>
             <label for="c_auth_1"><input type="radio" id="c_auth_1" name="c_auth" value="1"> 방 참여자</label>
             <label for="c_auth_2"><input type="radio" id="c_auth_2" name="c_auth" value="2"> 아무나</label>
-        
+
         <!-- join authority -->
         <h3>투표 참여 권한</h3>
             <label for="j_auth_1"><input type="radio" id="j_auth_1" name="j_auth" value="1" checked> 방 참여자</label>
             <label for="j_auth_2"><input type="radio" id="j_auth_2" name="j_auth" value="2"> 아무나</label>
-        
+
         <!-- date duration -->
         <!-- if #date_4 clicked than input:date will be appear -->
         <h3>기간</h3>
@@ -98,7 +106,7 @@ input[type=submit]:hover{
             <label for="date_2"><input type="radio" id="date_2" name="date" value="2"> 한달</label>
             <label for="date_3"><input type="radio" id="date_3" name="date" value="3"> 무기한</label>
             <label for="date_4"><input type="radio" id="date_4" name="date" value="4"> 기타</label>
-        
+
         <br><br><br>
 
         <input class="col-4 col-m-6 col-s-12" type="submit" value="방 생성">
