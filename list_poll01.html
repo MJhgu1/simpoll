@@ -184,7 +184,7 @@ div#add-button{
 
       <!-- list of vote -->
       <div class="col-12">
-        <div class="vote-tab">
+        <div class="vote-tab" id="tab1">
             <ul>
               <li class="check_icon"><i class="far fa-check-square"></i></li>
               <li class="title">점심식사<br>참여인원 13명</li>
@@ -222,5 +222,11 @@ div#add-button{
           </span>
       </div>
   </div>
+  <script>
+    var tab = document.getElementById("tab1");
+    tab.addEventListener("click", function(){
+      location.href="list_poll02.html"
+    })
+  </script>
 </body>
 </html>
