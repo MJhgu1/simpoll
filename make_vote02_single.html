@@ -92,6 +92,14 @@ ul li {
 }
 ul li.right {
   float: right;
+
+}
+input[type=submit] {
+  display: block;
+  text-align: center;
+  padding: 15px 60px;
+  text-decoration: none;
+  color: #00e6b8;
 }
 ul li a {
   display: block;
@@ -121,7 +129,7 @@ button {
 #poll_info p {
   font-size: 15px;
 }
-input {
+input[type=text] {
   font-size: 20px;
   border: 1px solid #fff;
   border-bottom: 1px solid black;
@@ -175,7 +183,7 @@ button {
   </div>
   <div id="makeVote">
     <div id="poll_info">
-      <form name="myForm" action="form_result.php"
+      <form name="myForm" action="list_poll01.html"
       onsubmit="return onsubmiT()"method="post">
       <p style="font-size: 25px;">Single choice</p>
       <p>poll name</p>
@@ -185,15 +193,17 @@ button {
       <p id="add_option">add option</p><button type="button" class="addButton" onclick="addOption()"><i class="fas fa-plus"></i></button><br>
       <input class="answer_inputForm" type="text" name="Answer01" placeholder="항목을 입력하세요." required><button type="button" class="delButton" onclick="delOption()"><i class="fas fa-minus"></i></button><br>
       <input class="answer_inputForm" type="text" name="Answer02" placeholder="항목을 입력하세요." required><button type="button" class="delButton" onclick="delOption()"><i class="fas fa-minus"></i></button><br>
+      <div id="submit">
+        <ul>
+          <li><a href="#">CANCEL</a></li>
+          <li class="right"><input type="submit" value="submit"></li>
+        </ul>
+      </div>
+
       </form>
     </div>
 
-    <div id="submit">
-      <ul>
-        <li><a href="#">CANCEL</a></li>
-        <li class="right"><a href="#" style="color: #00e6b8;">SUBMIT</a></li>
-      </ul>
-    </div>
+
 
   </div>
 </div>
