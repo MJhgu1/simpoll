@@ -79,6 +79,11 @@ input[type=text] {
         border-radius: 5px;
         border :1px solid #ccc;
 }
+
+button:hover{
+  cursor: pointer;
+}
+
 button.filter {
         width: 80px;
         height: 50px;
@@ -88,6 +93,23 @@ button.filter {
         background-color: grey;
         border-radius: 5px;
         border :1px solid #ccc;
+}
+button.pair-btn{
+  position: relative;
+  bottom: -3.5rem;
+  width: 4rem;
+  height: 2rem;
+  font-size: 15px;
+  border-radius: 5px;
+  border :1px solid #ccc;
+}
+button.btn-del{
+  color : white;
+  background-color: red;
+}
+button.btn-go{
+  color : white;
+  background-color: aquamarine;
 }
 #nav-bar{
   padding:0px;
@@ -138,6 +160,7 @@ button.filter {
 </div>
 
 <!-- contents -->
+<!-- left side -->
 <div class="col-4 col-m-3 col-s-0" id="list_left">
   <h3>검색</h3>
   <input type="text" placeholder="검색어를 입력해주세요.">
@@ -159,16 +182,19 @@ button.filter {
   <button class="filter">좋아요순</button>
 </div>
 
+<!-- left side : mobile -->
 <div class="col-0 col-m-0 col-s-12" id="nav-bar">
   <div class="col-s-3"></div>
   <div class="col-s-6 align-center">검색</div>
   <div class="col-s-3 align-right"><a href="#">V</a></div>
 </div>
 
+<!-- right side -->
 <div class="col-8 col-m-9 col-s-12" id="list_right">
   <div class="col-1"></div>
   <div class="col-10">
 
+    <!-- top -->
     <div class="col-12 room">
       <div class="title">2020-1 운영체제</div>
       <div class="tags">
@@ -176,6 +202,7 @@ button.filter {
         <div class="label color-proc">#진행중</div>
       </div>
       
+      <!-- left -->
       <div class="col-5 col-m-5 col-s-5" style="clear: both;">
         <div class="title">
           방장: Prof.Bob
@@ -183,7 +210,8 @@ button.filter {
           참여인원: 50명
         </div>
       </div>
-      
+
+      <!-- mid -->
       <div class="col-4 col-m-4 col-s-4">
           <div class="title">
           기간
@@ -192,9 +220,10 @@ button.filter {
           </div>
       </div>
 
-      <div class="col-3 col-m-3 col-s-3 align-right align-bottom" style="height: 100%; padding-top: 70px;">
-          <button>삭제</button>
-          <button>이동</button>
+      <!-- right -->
+      <div class="col-3 col-m-3 col-s-3 align-right btn-holder" style="height: 100%;">
+            <button class="btn-del pair-btn">삭제</button>
+            <button class="btn-go pair-btn">이동</button>
       </div>
     </div>
 

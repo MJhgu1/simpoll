@@ -62,7 +62,3 @@ width: 100%;
 .align-center { text-align: center; } 
 .align-right { text-align: right; } 
 .align-justify { text-align: justify; }
-
-.align-top { display:inline-block; vertical-align: top; }
-.align-middle { display:inline-block; vertical-align: middle; }
-.align-bottom { display:inline-block; vertical-align: bottom; }
