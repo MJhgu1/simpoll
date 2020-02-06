@@ -3,9 +3,10 @@
 -- sp_user Table Create SQL
 CREATE TABLE sp_user
 (
-    `id`     INT            NOT NULL    AUTO_INCREMENT COMMENT '사용자 아이디', 
-    `email`  VARCHAR(45)    NOT NULL    COMMENT '사용자 이메일', 
-    `name`   VARCHAR(45)    NOT NULL    COMMENT '사용자 이름', 
+    `id`       INT            NOT NULL    AUTO_INCREMENT COMMENT '사용자 아이디', 
+    `email`    VARCHAR(45)    NOT NULL    COMMENT '사용자 이메일', 
+    `name`     VARCHAR(45)    NOT NULL    COMMENT '사용자 이름', 
+    `deleted`  TINYINT(1)     NOT NULL    DEFAULT 0 COMMENT '삭제 여부', 
     PRIMARY KEY (id)
 );
 
@@ -16,10 +17,11 @@ ALTER TABLE sp_user COMMENT '사용자';
 CREATE TABLE sp_room
 (
     `id`          VARCHAR(4)     NOT NULL    COMMENT '방 아이디 (네글자)', 
-    `title`       VARCHAR(45)    NOT NULL    COMMENT '방 제목', 
     `master`      INT            NOT NULL    COMMENT '방장', 
+    `title`       VARCHAR(45)    NOT NULL    COMMENT '방 제목', 
     `start_date`  TIMESTAMP      NOT NULL    COMMENT '시작일', 
     `end_date`    TIMESTAMP      NOT NULL    COMMENT '종료일', 
+    `deleted`     TINYINT(1)     NOT NULL    DEFAULT 0 COMMENT '삭제 여부', 
     PRIMARY KEY (id)
 );
 
@@ -33,12 +35,13 @@ ALTER TABLE sp_room
 -- sp_vote Table Create SQL
 CREATE TABLE sp_vote
 (
-    `room_id`     VARCHAR(4)     NOT NULL    COMMENT '방 아이디 (네글자)', 
     `id`          VARCHAR(6)     NOT NULL    COMMENT '투표 아이디 (여섯글자)', 
+    `room_id`     VARCHAR(4)     NOT NULL    COMMENT '방 아이디 (네글자)', 
     `title`       VARCHAR(45)    NOT NULL    COMMENT '투표 제목', 
     `start_date`  TIMESTAMP      NOT NULL    COMMENT '시작일', 
     `end_date`    TIMESTAMP      NOT NULL    COMMENT '종료일', 
     `type`        INT            NOT NULL    COMMENT '투표 유형', 
+    `deleted`     TINYINT(1)     NOT NULL    DEFAULT 0 COMMENT '삭제 여부', 
     PRIMARY KEY (id)
 );
 
@@ -47,6 +50,23 @@ ALTER TABLE sp_vote COMMENT '투표';
 ALTER TABLE sp_vote
     ADD CONSTRAINT FK_sp_vote_room_id_sp_room_id FOREIGN KEY (room_id)
         REFERENCES sp_room (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- sp_choice Table Create SQL
+CREATE TABLE sp_choice
+(
+    `id`        INT            NOT NULL    AUTO_INCREMENT COMMENT '선택지 아이디', 
+    `vote_id`   VARCHAR(6)     NOT NULL    COMMENT '투표 아이디 (여섯글자)', 
+    `contents`  VARCHAR(45)    NOT NULL    COMMENT '내용', 
+    `deleted`   TINYINT(1)     NOT NULL    DEFAULT 0 COMMENT '삭제 여부', 
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE sp_choice COMMENT '선택지';
+
+ALTER TABLE sp_choice
+    ADD CONSTRAINT FK_sp_choice_vote_id_sp_vote_id FOREIGN KEY (vote_id)
+        REFERENCES sp_vote (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 -- sp_room_user Table Create SQL
@@ -68,28 +88,14 @@ ALTER TABLE sp_room_user
         REFERENCES sp_room (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
--- sp_choice Table Create SQL
-CREATE TABLE sp_choice
-(
-    `vote_id`   VARCHAR(6)     NOT NULL    COMMENT '투표 아이디 (여섯글자)', 
-    `id`        INT            NOT NULL    AUTO_INCREMENT COMMENT '선택지 아이디', 
-    `contents`  VARCHAR(45)    NOT NULL    COMMENT '내용', 
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE sp_choice COMMENT '선택지';
-
-ALTER TABLE sp_choice
-    ADD CONSTRAINT FK_sp_choice_vote_id_sp_vote_id FOREIGN KEY (vote_id)
-        REFERENCES sp_vote (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-
 -- sp_comment Table Create SQL
 CREATE TABLE sp_comment
 (
     `vote_id`   VARCHAR(6)    NOT NULL    COMMENT '투표 아이디 (여섯글자)', 
     `user_id`   INT           NOT NULL    COMMENT '사용자 아이디', 
     `contents`  TEXT          NOT NULL    COMMENT '내용', 
+    `deleted`   TINYINT(1)    NOT NULL    DEFAULT 0 COMMENT '삭제 여부', 
+    `mod_date`  TIMESTAMP     NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '수정 날짜', 
     PRIMARY KEY (vote_id, user_id)
 );
 
@@ -122,5 +128,29 @@ ALTER TABLE sp_like
 ALTER TABLE sp_like
     ADD CONSTRAINT FK_sp_like_user_id_sp_user_id FOREIGN KEY (user_id)
         REFERENCES sp_user (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- sp_user_vote_choice Table Create SQL
+CREATE TABLE sp_user_vote_choice
+(
+    `user_id`    INT           NOT NULL    COMMENT '사용자 아이디', 
+    `vote_id`    VARCHAR(6)    NOT NULL    COMMENT '투표 아이디 (여섯글자)', 
+    `choice_id`  INT           NOT NULL    COMMENT '선택지 아이디', 
+    PRIMARY KEY (user_id, vote_id, choice_id)
+);
+
+ALTER TABLE sp_user_vote_choice COMMENT '사용자:선택지 매칭 테이블';
+
+ALTER TABLE sp_user_vote_choice
+    ADD CONSTRAINT FK_sp_user_vote_choice_user_id_sp_user_id FOREIGN KEY (user_id)
+        REFERENCES sp_user (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE sp_user_vote_choice
+    ADD CONSTRAINT FK_sp_user_vote_choice_vote_id_sp_vote_id FOREIGN KEY (vote_id)
+        REFERENCES sp_vote (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE sp_user_vote_choice
+    ADD CONSTRAINT FK_sp_user_vote_choice_choice_id_sp_choice_id FOREIGN KEY (choice_id)
+        REFERENCES sp_choice (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
