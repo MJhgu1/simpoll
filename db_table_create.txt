@@ -12,6 +12,8 @@ CREATE TABLE sp_user
 
 ALTER TABLE sp_user COMMENT '사용자';
 
+ALTER TABLE sp_user 
+    ADD UNIQUE UK_sp_user_email (email);
 
 -- sp_room Table Create SQL
 CREATE TABLE sp_room
