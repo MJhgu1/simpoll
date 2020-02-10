@@ -107,26 +107,40 @@ input[type=submit]:hover{
 <!-- contents -->
 <div class="col-12 col-m-12 col-s-12">
     <form action="list_poll01.html" method="post">
-        <h1>방 세부사항 수정</h1>
+      <h1>새로운 방 개설</h1>
 
-        <!-- create authority -->
-        <h3>투표 생성 권한</h3>
-            <label for="c_auth_0"><input type="radio" id="c_auth_0" name="c_auth" value="0" checked> 방장만</label>
-            <label for="c_auth_1"><input type="radio" id="c_auth_1" name="c_auth" value="1"> 방 참여자</label>
-            <label for="c_auth_2"><input type="radio" id="c_auth_2" name="c_auth" value="2"> 아무나</label>
+      <!-- poll create authority -->
+      <div>
+      <h3>Simpoll 생성 권한</h3>
+          <label for="c_auth_0"><input type="radio" id="c_auth_0" name="c_auth" value="0" checked> 방장만</label>
+          <label for="c_auth_1"><input type="radio" id="c_auth_1" name="c_auth" value="1"> 방 참여자 모두</label>
+      </div>
+      
+      <!-- nickname or name check -->
+      <div>
+      <h3>참여자 실명/닉네임 여부</h3>
+          <label for="nick_check_0"><input type="radio" id="nick_check_0" name="nick_check" value="0" checked> 실명</label>
+          <label for="nick_check_1"><input type="radio" id="nick_check_1" name="nick_check" value="1"> 닉네임</label>
 
-        <!-- join authority -->
-        <h3>투표 참여 권한</h3>
-            <label for="j_auth_1"><input type="radio" id="j_auth_1" name="j_auth" value="1" checked> 방 참여자</label>
-            <label for="j_auth_2"><input type="radio" id="j_auth_2" name="j_auth" value="2"> 아무나</label>
+      <br>
+      </div>
 
-        <!-- date duration -->
-        <!-- if #date_4 clicked than input:date will be appear -->
-        <h3>기간</h3>
-            <input type="date" name="startDate" required> ~ <input type="date" name="endDate" required>
-        <br><br><br>
+      <!-- deadline check -->
+      <div style="margin-block-start: 1em; margin-block-end: 1em;">
+      <h3 style="display: inline;">마감 날짜 설정 여부</h3>
+      <input type="checkbox" name="d_check" value="true" onclick="deadlineChecked(this)">
+      </div>
 
-        <input class="col-4 col-m-6 col-s-12" type="submit" value="수정">
+      <!-- deadline -->
+      <!-- if deadline is checked than it appears -->
+      <div id="dead_div" style="visibility: hidden;">
+        <h3>마감 날짜</h3>
+        <label for="deadline"><input type="date" id="deadline" name="deadline"></label>
+      </div>
+
+      <br><br><br>
+
+      <input class="col-4 col-m-6 col-s-12" type="submit" value="방 생성">
     </form>
 </div>
 </body>
