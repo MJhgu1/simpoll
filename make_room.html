@@ -100,30 +100,44 @@ input[type=submit]:hover{
     <form action="my_room.html" method="post">
         <h1>새로운 방 개설</h1>
 
-        <!-- create authority -->
-        <h3>투표 생성 권한</h3>
+        <!-- poll create authority -->
+        <h3>Simpoll 생성 권한</h3>
             <label for="c_auth_0"><input type="radio" id="c_auth_0" name="c_auth" value="0" checked> 방장만</label>
-            <label for="c_auth_1"><input type="radio" id="c_auth_1" name="c_auth" value="1"> 방 참여자</label>
-            <label for="c_auth_2"><input type="radio" id="c_auth_2" name="c_auth" value="2"> 아무나</label>
+            <label for="c_auth_1"><input type="radio" id="c_auth_1" name="c_auth" value="1"> 방 참여자 모두</label>
 
-        <!-- join authority -->
-        <h3>투표 참여 권한</h3>
-            <label for="j_auth_1"><input type="radio" id="j_auth_1" name="j_auth" value="1" checked> 방 참여자</label>
-            <label for="j_auth_2"><input type="radio" id="j_auth_2" name="j_auth" value="2"> 아무나</label>
+        <!-- nickname or name check -->
+        <h3>참여자 실명/닉네임 여부</h3>
+            <label for="nick_check_0"><input type="radio" id="nick_check_0" name="nick_check" value="0" checked> 실명</label>
+            <label for="nick_check_1"><input type="radio" id="nick_check_1" name="nick_check" value="1"> 닉네임</label>
 
-        <!-- date duration -->
-        <!-- if #date_4 clicked than input:date will be appear -->
-        <h3>기간</h3>
-            <label for="date_0"><input type="radio" id="date_0" name="date" value="0" checked> 하루</label>
-            <label for="date_1"><input type="radio" id="date_1" name="date" value="1"> 일주일</label>
-            <label for="date_2"><input type="radio" id="date_2" name="date" value="2"> 한달</label>
-            <label for="date_3"><input type="radio" id="date_3" name="date" value="3"> 무기한</label>
-            <label for="date_4"><input type="radio" id="date_4" name="date" value="4"> 기타</label>
+        <!-- deadline check -->
+        <h3>마감 날짜 설정 여부</h3>
+            <label for="d_check_0"><input type="radio" id="d_check_0" name="d_check" value="0" onclick="deadlineChecked()" checked> 예</label>
+            <label for="d_check_1"><input type="radio" id="d_check_1" name="d_check" value="1" onclick="deadlineNotChecked()"> 아니오</label>
+
+        <!-- deadline -->
+        <!-- if deadline is checked than it appears -->
+        <div id="dead_div">
+          <h3>마감 날짜</h3>
+          <label for="deadline"><input type="date" id="deadline" name="deadline"></label>
+        </div>
 
         <br><br><br>
 
         <input class="col-4 col-m-6 col-s-12" type="submit" value="방 생성">
     </form>
+
+    <script>
+      var deadlineDiv = document.getElementById("dead_div");
+
+      function deadlineChecked(){
+        deadlineDiv.style.visibility = "visible";
+      } 
+
+      function deadlineNotChecked(){
+        deadlineDiv.style.visibility = "hidden";
+      }     
+    </script>
 </div>
 </body>
 </html>
