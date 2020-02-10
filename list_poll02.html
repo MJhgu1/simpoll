@@ -65,7 +65,13 @@
         ul.topnav li a.nickname {
             padding: 18px 0px;
         }
-
+        li#info {
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          padding: 18px 5px;
+          color: #595959;
+        }
         @media screen and (max-width: 600px) {
             span.title {
                 text-align: center;
@@ -84,7 +90,7 @@
                 float: none;
             }
 
-            ul.topnav #info {
+            ul.topnav #info, ul.topnav #icon{
                 display: none;
             }
         }
@@ -230,13 +236,15 @@
 <body>
     <!-- navigation -->
     <div class="header">
-        <span class="title"><a href="index.html">Simpoll</a></span>
-        <ul class="topnav">
-          <li class="right"><a href="make_room.html">새로운 방 만들기</a></li>
-          <li class="right"><a href="list_room.html">내 방 목록</a></li>
-          <li id="info" class="right"><i class="fas fa-user-circle"></i>내별명 님</li>
-          <li class="right"><a href="#">마이페이지</a></li>
-        </ul>
+      <span class="title"><a href="index.html">Simpoll</a></span>
+      <ul class="topnav">
+        <li class="right"><a href="make_room.html">새로운 방 만들기</a></li>
+        <li class="right"><a href="list_room.html">참여한 방 목록</a></li>
+        <li class="right"><a href="list_room.html">개설한 방 목록</a></li>
+        <li id="icon"<i class="fas fa-user-circle"></i></li>
+        <li id="info" class="right">내별명 님</li>
+        <li class="right"><a href="#">마이페이지</a></li>
+      </ul>
     </div>
 
     <!-- contents -->
@@ -257,9 +265,7 @@
             </div>
             <!-- room update button -->
             <div id="room-update" class="col-3 col-m-3 col-s-12 align-right">
-                <button id="update-btn">
-                    수정
-                </button>
+                <a href="room_edit.html"><button id="update-btn">수정</button></a>
             </div>
         </div>
 
@@ -310,7 +316,7 @@
         <!-- vote add button -->
         <div id="add-button" class="align-center">
             <span>
-                <i class="fas fa-plus" style="color:white"></i>
+                <a href="make_vote01.html"><i class="fas fa-plus" style="color:white"></i></a>
             </span>
         </div>
 </body>
